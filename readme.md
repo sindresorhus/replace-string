@@ -26,7 +26,7 @@ replaceString(input, '🐑', '🦄');
 
 ## API
 
-### replaceString(input, needle, replacement)
+### replaceString(input, needle, replacement [, fromIndex])
 
 Returns a new string with all `needle` matches replaced with `replacement`.
 
@@ -55,6 +55,14 @@ replaceString('Foo 🐑 Bar', '🐑', (needle, matchCount, input) => `${needle}�
 //=> 'Foo 🐑❤️ Bar'
 ```
 
+#### fromIndex
+Optional
+
+Type: `number`
+
+Default value: 0
+
+Index of the starting point
 
 ## Related
 
