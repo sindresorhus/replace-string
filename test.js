@@ -19,6 +19,14 @@ test('main', t => {
 		m('foo bar baz foo baz', 'foo', '🦄'),
 		'🦄 bar baz 🦄 baz'
 	);
+
+	t.is(
+		m('foo bar baz foo baz', 'foo', '🦄', 5),
+		'foo bar baz 🦄 baz'
+	);
+	t.is(m('foo', 3, 3, 100), 'foo');
+	t.is(m('foo', 'foo', 'bar', -100), 'bar');
+	t.is(m('foo foo foo foo foo', 'foo', 'bar', 1), 'foo bar bar bar bar');
 });
 
 test('function replacement', t => {
@@ -36,4 +44,21 @@ test('function replacement', t => {
 	);
 
 	t.deepEqual(indices, [1, 2]);
+});
+
+test('function replacement with fromIndex', t => {
+	const initNeedle = 'foo';
+	const indices = [];
+
+	t.is(
+		m('foo bar baz foo baz', initNeedle, (needle, count, input) => {
+			t.is(needle, initNeedle);
+			indices.push(count);
+			t.is(typeof input, 'string');
+			return `${needle}2`;
+		}, 5),
+		'foo bar baz foo2 baz'
+	);
+
+	t.deepEqual(indices, [1]);
 });
