@@ -1,21 +1,27 @@
 'use strict';
-module.exports = (input, needle, replacement, fromIndex) => {
+module.exports = (input, opts) => {
+	opts = Object.assign({}, opts);
+
 	if (typeof input !== 'string') {
 		throw new TypeError(`Expected input to be a string, got ${typeof input}`);
 	}
 
-	if (!(typeof needle === 'string' && needle.length > 0) ||
-		!(typeof replacement === 'string' || typeof replacement === 'function')) {
+	if (!(typeof opts.needle === 'string' && opts.needle.length > 0) ||
+		!(typeof opts.replacement === 'string' || typeof opts.replacement === 'function')) {
 		return input;
 	}
 
 	let ret = '';
 	let matchCount = 0;
 	let prevIndex = 0;
-	const startIndex = (typeof fromIndex === 'number' && fromIndex > 0) ? fromIndex : 0;
+	const startIndex = opts.fromIndex > 0 ? opts.fromIndex : 0;
+
+	if (startIndex > input.length) {
+		return input;
+	}
 
 	while (true) { // eslint-disable-line no-constant-condition
-		const index = input.indexOf(needle, prevIndex);
+		const index = input.indexOf(opts.needle, prevIndex);
 
 		if (index === -1) {
 			break;
@@ -23,12 +29,13 @@ module.exports = (input, needle, replacement, fromIndex) => {
 
 		if (index >= startIndex) {
 			matchCount++;
-			const replaceStr = typeof replacement === 'string' ? replacement : replacement(needle, matchCount, input);
+			const replaceStr = typeof opts.replacement === 'string' ? opts.replacement : opts.replacement(opts.needle, matchCount, input);
 			ret += input.slice(prevIndex, index) + replaceStr;
 		} else {
-			ret += input.slice(prevIndex, index + needle.length);
+			ret += input.slice(prevIndex, index + opts.needle.length);
 		}
-		prevIndex = index + needle.length;
+
+		prevIndex = index + opts.needle.length;
 	}
 
 	return ret + input.slice(prevIndex);
