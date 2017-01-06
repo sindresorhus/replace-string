@@ -26,7 +26,7 @@ replaceString(input, '🐑', '🦄');
 
 ## API
 
-### replaceString(input, [options])
+### replaceString(input, needle, replacement, [options])
 
 Returns a new string with all `needle` matches replaced with `replacement`.
 
@@ -36,15 +36,13 @@ Type: `string`
 
 String to work on.
 
-#### options
-
-##### needle
+#### needle
 
 Type: `string`
 
 String to match in `input`.
 
-##### replacement
+#### replacement
 
 Type: `string` `Function`
 
@@ -53,13 +51,10 @@ Replacement for `needle` matches.
 If a function, it receives the following arguments; the `needle`, the match count, and the `input`:
 
 ```js
-replaceString('Foo 🐑 Bar', {
-			needle: '🐑',
-			replacement: (needle, matchCount, input) => `${needle}❤️`
-		}
-);
+replaceString('Foo 🐑 Bar', '🐑', (needle, matchCount, input) => `${needle}❤️`);
 //=> 'Foo 🐑❤️ Bar'
 ```
+#### options
 
 ##### fromIndex
 
