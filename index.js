@@ -13,10 +13,9 @@ module.exports = (input, needle, replacement, opts) => {
 
 	let ret = '';
 	let matchCount = 0;
-	let prevIndex = 0;
-	const startIndex = opts.fromIndex > 0 ? opts.fromIndex : 0;
+	let prevIndex = opts.fromIndex > 0 ? opts.fromIndex : 0;
 
-	if (startIndex > input.length) {
+	if (prevIndex > input.length) {
 		return input;
 	}
 
@@ -27,14 +26,9 @@ module.exports = (input, needle, replacement, opts) => {
 			break;
 		}
 
-		if (index >= startIndex) {
-			matchCount++;
-			const replaceStr = typeof replacement === 'string' ? replacement : replacement(needle, matchCount, input);
-			ret += input.slice(prevIndex, index) + replaceStr;
-		} else {
-			ret += input.slice(prevIndex, index + needle.length);
-		}
-
+		matchCount++;
+		const replaceStr = typeof replacement === 'string' ? replacement : replacement(needle, matchCount, input);
+		ret += (prevIndex === opts.fromIndex) ? input.slice(0, index) + replaceStr : input.slice(prevIndex, index) + replaceStr;
 		prevIndex = index + needle.length;
 	}
 
