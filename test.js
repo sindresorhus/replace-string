@@ -27,6 +27,7 @@ test('main', t => {
 	t.is(m('foo', 3, 3, {fromIndex: 100}), 'foo');
 	t.is(m('foo', 'foo', 'bar', {fromIndex: -100}), 'bar');
 	t.is(m('foo foo foo foo foo', 'foo', 'bar', {fromIndex: 1}), 'foo bar bar bar bar');
+	t.is(m('bar foo', 'foo', 'bar', {fromIndex: 5}), 'bar foo');
 });
 
 test('function replacement', t => {
