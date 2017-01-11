@@ -54,15 +54,18 @@ If a function, it receives the following arguments; the `needle`, the match coun
 replaceString('Foo 🐑 Bar', '🐑', (needle, matchCount, input) => `${needle}❤️`);
 //=> 'Foo 🐑❤️ Bar'
 ```
+
 #### options
+
+Type: `Object`
 
 ##### fromIndex
 
-Type: `number`
-
+Type: `number`<br>
 Default: `0`
 
 Index at which to start replacing.
+
 
 ## Related
 
