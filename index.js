@@ -28,7 +28,7 @@ module.exports = (input, needle, replacement, opts) => {
 
 		matchCount++;
 
-		const replaceStr = typeof replacement === 'string' ? replacement : replacement(needle, matchCount, input);
+		const replaceStr = typeof replacement === 'string' ? replacement : replacement(needle, matchCount, input, index);
 
 		// Get the initial part of the string on the first iteration
 		const beginSlice = matchCount === 1 ? 0 : prevIndex;
