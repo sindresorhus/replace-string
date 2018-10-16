@@ -1,7 +1,6 @@
 'use strict';
-module.exports = (input, needle, replacement, opts) => {
-	opts = Object.assign({}, opts);
 
+module.exports = (input, needle, replacement, options = {}) => {
 	if (typeof input !== 'string') {
 		throw new TypeError(`Expected input to be a string, got ${typeof input}`);
 	}
@@ -13,7 +12,7 @@ module.exports = (input, needle, replacement, opts) => {
 
 	let ret = '';
 	let matchCount = 0;
-	let prevIndex = opts.fromIndex > 0 ? opts.fromIndex : 0;
+	let prevIndex = options.fromIndex > 0 ? options.fromIndex : 0;
 
 	if (prevIndex > input.length) {
 		return input;

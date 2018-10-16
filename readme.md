@@ -8,7 +8,7 @@ Similar to `String#replace()`, but supports replacing multiple matches. You coul
 ## Install
 
 ```
-$ npm install --save replace-string
+$ npm install replace-string
 ```
 
 

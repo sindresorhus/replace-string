@@ -1,47 +1,43 @@
 {
-  "name": "replace-string",
-  "version": "1.1.0",
-  "description": "Replace all substring matches in a string",
-  "license": "MIT",
-  "repository": "sindresorhus/replace-string",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    "replace",
-    "string",
-    "str",
-    "text",
-    "all",
-    "many",
-    "multiple",
-    "global",
-    "match",
-    "matches",
-    "replacement",
-    "replacer",
-    "modify",
-    "substring",
-    "sub-string",
-    "needle",
-    "search"
-  ],
-  "devDependencies": {
-    "ava": "*",
-    "xo": "*"
-  },
-  "xo": {
-    "esnext": true
-  }
+	"name": "replace-string",
+	"version": "1.1.0",
+	"description": "Replace all substring matches in a string",
+	"license": "MIT",
+	"repository": "sindresorhus/replace-string",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"replace",
+		"string",
+		"text",
+		"all",
+		"many",
+		"multiple",
+		"global",
+		"match",
+		"matches",
+		"replacement",
+		"replacer",
+		"modify",
+		"substring",
+		"sub-string",
+		"needle",
+		"search"
+	],
+	"devDependencies": {
+		"ava": "^0.25.0",
+		"xo": "^0.23.0"
+	}
 }

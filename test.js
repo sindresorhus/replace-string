@@ -1,33 +1,33 @@
 import test from 'ava';
-import m from '.';
+import replaceString from '.';
 
 test('main', t => {
-	t.is(m('foo bar foo', 'bar', 'foo'), 'foo foo foo');
-	t.is(m('', 'bar', 'foo'), '');
-	t.is(m('foo', '', 'foo'), 'foo');
-	t.is(m('foo', 'bar', ''), 'foo');
-	t.is(m('foo'), 'foo');
-	t.is(m('foo', 'bar'), 'foo');
-	t.is(m('foo', 3, 3), 'foo');
+	t.is(replaceString('foo bar foo', 'bar', 'foo'), 'foo foo foo');
+	t.is(replaceString('', 'bar', 'foo'), '');
+	t.is(replaceString('foo', '', 'foo'), 'foo');
+	t.is(replaceString('foo', 'bar', ''), 'foo');
+	t.is(replaceString('foo'), 'foo');
+	t.is(replaceString('foo', 'bar'), 'foo');
+	t.is(replaceString('foo', 3, 3), 'foo');
 
 	t.is(
-		m('My friend has a 🐑. I want a 🐑 too!', '🐑', '🦄'),
+		replaceString('My friend has a 🐑. I want a 🐑 too!', '🐑', '🦄'),
 		'My friend has a 🦄. I want a 🦄 too!'
 	);
 
 	t.is(
-		m('foo bar baz foo baz', 'foo', '🦄'),
+		replaceString('foo bar baz foo baz', 'foo', '🦄'),
 		'🦄 bar baz 🦄 baz'
 	);
 
 	t.is(
-		m('foo bar baz foo baz', 'foo', '🦄', {fromIndex: 5}),
+		replaceString('foo bar baz foo baz', 'foo', '🦄', {fromIndex: 5}),
 		'foo bar baz 🦄 baz'
 	);
-	t.is(m('foo', 3, 3, {fromIndex: 100}), 'foo');
-	t.is(m('foo', 'foo', 'bar', {fromIndex: -100}), 'bar');
-	t.is(m('foo foo foo foo foo', 'foo', 'bar', {fromIndex: 1}), 'foo bar bar bar bar');
-	t.is(m('bar foo', 'foo', 'bar', {fromIndex: 5}), 'bar foo');
+	t.is(replaceString('foo', 3, 3, {fromIndex: 100}), 'foo');
+	t.is(replaceString('foo', 'foo', 'bar', {fromIndex: -100}), 'bar');
+	t.is(replaceString('foo foo foo foo foo', 'foo', 'bar', {fromIndex: 1}), 'foo bar bar bar bar');
+	t.is(replaceString('bar foo', 'foo', 'bar', {fromIndex: 5}), 'bar foo');
 });
 
 test('function replacement', t => {
@@ -36,7 +36,7 @@ test('function replacement', t => {
 	const matchIndices = [];
 
 	t.is(
-		m('foo bar baz foo baz', initNeedle, (needle, count, input, matchIndex) => {
+		replaceString('foo bar baz foo baz', initNeedle, (needle, count, input, matchIndex) => {
 			t.is(needle, initNeedle);
 			countIndices.push(count);
 			matchIndices.push(matchIndex);
@@ -56,7 +56,7 @@ test('function replacement with fromIndex', t => {
 	const matchIndices = [];
 
 	t.is(
-		m('foo bar baz foo baz', initNeedle, (needle, count, input, matchIndex) => {
+		replaceString('foo bar baz foo baz', initNeedle, (needle, count, input, matchIndex) => {
 			t.is(needle, initNeedle);
 			countIndices.push(count);
 			matchIndices.push(matchIndex);
