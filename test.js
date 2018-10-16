@@ -1,5 +1,5 @@
 import test from 'ava';
-import m from './';
+import m from '.';
 
 test('main', t => {
 	t.is(m('foo bar foo', 'bar', 'foo'), 'foo foo foo');
@@ -32,34 +32,40 @@ test('main', t => {
 
 test('function replacement', t => {
 	const initNeedle = 'foo';
-	const indices = [];
+	const countIndices = [];
+	const matchIndices = [];
 
 	t.is(
-		m('foo bar baz foo baz', initNeedle, (needle, count, input) => {
+		m('foo bar baz foo baz', initNeedle, (needle, count, input, matchIndex) => {
 			t.is(needle, initNeedle);
-			indices.push(count);
+			countIndices.push(count);
+			matchIndices.push(matchIndex);
 			t.is(typeof input, 'string');
 			return `${needle}2`;
 		}),
 		'foo2 bar baz foo2 baz'
 	);
 
-	t.deepEqual(indices, [1, 2]);
+	t.deepEqual(countIndices, [1, 2]);
+	t.deepEqual(matchIndices, [0, 12]);
 });
 
 test('function replacement with fromIndex', t => {
 	const initNeedle = 'foo';
-	const indices = [];
+	const countIndices = [];
+	const matchIndices = [];
 
 	t.is(
-		m('foo bar baz foo baz', initNeedle, (needle, count, input) => {
+		m('foo bar baz foo baz', initNeedle, (needle, count, input, matchIndex) => {
 			t.is(needle, initNeedle);
-			indices.push(count);
+			countIndices.push(count);
+			matchIndices.push(matchIndex);
 			t.is(typeof input, 'string');
 			return `${needle}2`;
 		}, {fromIndex: 5}),
 		'foo bar baz foo2 baz'
 	);
 
-	t.deepEqual(indices, [1]);
+	t.deepEqual(countIndices, [1]);
+	t.deepEqual(matchIndices, [12]);
 });

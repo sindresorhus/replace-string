@@ -51,7 +51,7 @@ Replacement for `needle` matches.
 If a function, it receives the following arguments; the `needle`, the match count, and the `input`:
 
 ```js
-replaceString('Foo 🐑 Bar', '🐑', (needle, matchCount, input) => `${needle}❤️`);
+replaceString('Foo 🐑 Bar', '🐑', (needle, matchCount, input, matchIndex) => `${needle}❤️`);
 //=> 'Foo 🐑❤️ Bar'
 ```
 
