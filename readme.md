@@ -17,20 +17,20 @@ $ npm install replace-string
 ```js
 const replaceString = require('replace-string');
 
-const input = 'My friend has a 🐑. I want a 🐑 too!';
+const string = 'My friend has a 🐑. I want a 🐑 too!';
 
-replaceString(input, '🐑', '🦄');
+replaceString(string, '🐑', '🦄');
 //=> 'My friend has a 🦄. I want a 🦄 too!'
 ```
 
 
 ## API
 
-### replaceString(input, needle, replacement, [options])
+### replaceString(string, needle, replacement, [options])
 
 Returns a new string with all `needle` matches replaced with `replacement`.
 
-#### input
+#### string
 
 Type: `string`
 
@@ -44,7 +44,7 @@ String to match in `input`.
 
 #### replacement
 
-Type: `string` `Function`
+Type: `string | Function`
 
 Replacement for `needle` matches.
 
@@ -57,7 +57,7 @@ replaceString('Foo 🐑 Bar', '🐑', (needle, matchCount, input, matchIndex) =>
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### fromIndex
 
