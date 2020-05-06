@@ -19,7 +19,9 @@ module.exports = (string, needle, replacement, options = {}) => {
 	}
 
 	while (true) { // eslint-disable-line no-constant-condition
-		const index = string.indexOf(needle, prevIndex);
+		const index = (options && options.caseInsensitive) ?
+			string.toLowerCase().indexOf(needle.toLowerCase(), prevIndex) :
+			string.indexOf(needle, prevIndex);
 
 		if (index === -1) {
 			break;
@@ -27,7 +29,13 @@ module.exports = (string, needle, replacement, options = {}) => {
 
 		matchCount++;
 
-		const replaceStr = typeof replacement === 'string' ? replacement : replacement(needle, matchCount, string, index);
+		const replaceStr = typeof replacement === 'string' ? replacement : replacement(
+			// If caseInsensitive is enabled, the matched substring may be different from the needle
+			string.slice(index, index + needle.length),
+			matchCount,
+			string,
+			index
+		);
 
 		// Get the initial part of the string on the first iteration
 		const beginSlice = matchCount === 1 ? 0 : prevIndex;

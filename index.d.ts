@@ -1,6 +1,6 @@
 declare namespace replaceString {
 	type ReplacementFunction = (
-		needle: string,
+		matchedSubstring: string,
 		matchCount: number,
 		input: string,
 		matchIndex: number
@@ -13,6 +13,13 @@ declare namespace replaceString {
 		@default 0
 		*/
 		readonly fromIndex?: number;
+
+		/**
+		Whether or not substring matching should be case-insensitive.
+
+		@default false
+		*/
+		readonly caseInsensitive?: boolean;
 	}
 }
 
@@ -33,7 +40,7 @@ const string = 'My friend has a 🐑. I want a 🐑 too!';
 replaceString(string, '🐑', '🦄');
 //=> 'My friend has a 🦄. I want a 🦄 too!'
 
-replaceString('Foo 🐑 Bar', '🐑', (needle, matchCount, input, matchIndex) => `${needle}❤️`);
+replaceString('Foo 🐑 Bar', '🐑', (matchedSubstring, matchCount, input, matchIndex) => `${matchedSubstring}❤️`);
 //=> 'Foo 🐑❤️ Bar'
 ```
 */
