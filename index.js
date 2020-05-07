@@ -19,7 +19,7 @@ module.exports = (string, needle, replacement, options = {}) => {
 	}
 
 	while (true) { // eslint-disable-line no-constant-condition
-		const index = (options && options.caseInsensitive) ?
+		const index = options.caseInsensitive ?
 			string.toLowerCase().indexOf(needle.toLowerCase(), prevIndex) :
 			string.indexOf(needle, prevIndex);
 
