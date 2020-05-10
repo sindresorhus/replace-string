@@ -1,16 +1,14 @@
-# replace-string [![Build Status](https://travis-ci.org/sindresorhus/replace-string.svg?branch=master)](https://travis-ci.org/sindresorhus/replace-string)
+# replace-string [![Build Status](https://travis-ci.com/sindresorhus/replace-string.svg?branch=master)](https://travis-ci.com/sindresorhus/replace-string)
 
 > Replace all substring matches in a string
 
 Similar to `String#replace()`, but supports replacing multiple matches. You could achieve something similar by putting the string in a `RegExp` constructor with the global flag and passing it to `String#replace()`, but you would then have to first escape the string anyways.
-
 
 ## Install
 
 ```
 $ npm install replace-string
 ```
-
 
 ## Usage
 
@@ -23,10 +21,9 @@ replaceString(string, '🐑', '🦄');
 //=> 'My friend has a 🦄. I want a 🦄 too!'
 ```
 
-
 ## API
 
-### replaceString(string, needle, replacement, [options])
+### replaceString(string, needle, replacement, options?)
 
 Returns a new string with all `needle` matches replaced with `replacement`.
 
@@ -61,24 +58,18 @@ Type: `object`
 
 ##### fromIndex
 
-Type: `number`<br>
+Type: `number`\
 Default: `0`
 
 Index at which to start replacing.
 
 ##### caseInsensitive
 
-Type: `boolean`<br>
+Type: `boolean`\
 Default: `false`
 
 Whether or not substring matching should be case-insensitive.
 
-
 ## Related
 
 - [execall](https://github.com/sindresorhus/execall) - Find multiple `RegExp` matches in a string
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)

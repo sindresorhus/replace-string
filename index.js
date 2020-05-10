@@ -30,14 +30,14 @@ module.exports = (string, needle, replacement, options = {}) => {
 		matchCount++;
 
 		const replaceStr = typeof replacement === 'string' ? replacement : replacement(
-			// If caseInsensitive is enabled, the matched substring may be different from the needle
+			// If `caseInsensitive`` is enabled, the matched substring may be different from the needle.
 			string.slice(index, index + needle.length),
 			matchCount,
 			string,
 			index
 		);
 
-		// Get the initial part of the string on the first iteration
+		// Get the initial part of the string on the first iteration.
 		const beginSlice = matchCount === 1 ? 0 : prevIndex;
 
 		result += string.slice(beginSlice, index) + replaceStr;
