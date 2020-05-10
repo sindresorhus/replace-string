@@ -48,10 +48,10 @@ Type: `string | Function`
 
 Replacement for `needle` matches.
 
-If a function, it receives the following arguments; the `needle`, the match count, and the `input`:
+If a function, it receives the matched substring, the match count, the original input, and the index in which the match happened (as measured from the original input):
 
 ```js
-replaceString('Foo 🐑 Bar', '🐑', (needle, matchCount, input, matchIndex) => `${needle}❤️`);
+replaceString('Foo 🐑 Bar', '🐑', (matchedSubstring, matchCount, input, matchIndex) => `${matchedSubstring}❤️`);
 //=> 'Foo 🐑❤️ Bar'
 ```
 
@@ -65,6 +65,13 @@ Type: `number`<br>
 Default: `0`
 
 Index at which to start replacing.
+
+##### caseInsensitive
+
+Type: `boolean`<br>
+Default: `false`
+
+Whether or not substring matching should be case-insensitive.
 
 
 ## Related

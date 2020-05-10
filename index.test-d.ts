@@ -16,3 +16,5 @@ expectType<string>(
 	})
 );
 expectType<string>(replaceString(input, '🐑', '🦄', {fromIndex: 1}));
+expectType<string>(replaceString(input, '🐑', '🦄', {caseInsensitive: true as boolean}));
+expectType<string>(replaceString(input, '🐑', '🦄', {fromIndex: 1, caseInsensitive: true as boolean}));
