@@ -1,4 +1,4 @@
-# replace-string [![Build Status](https://travis-ci.com/sindresorhus/replace-string.svg?branch=master)](https://travis-ci.com/sindresorhus/replace-string)
+# replace-string
 
 > Replace all substring matches in a string
 
