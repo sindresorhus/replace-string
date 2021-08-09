@@ -1,7 +1,6 @@
 import {expectType} from 'tsd';
-import replaceString = require('.');
+import replaceString from './index.js';
 
-const options: replaceString.Options = {};
 const input = 'My friend has a 🐑. I want a 🐑 too!';
 
 expectType<string>(replaceString(input, '🐑', '🦄'));
@@ -13,7 +12,7 @@ expectType<string>(
 		expectType<number>(matchIndex);
 
 		return '🦄';
-	})
+	}),
 );
 expectType<string>(replaceString(input, '🐑', '🦄', {fromIndex: 1}));
 expectType<string>(replaceString(input, '🐑', '🦄', {caseInsensitive: true as boolean}));

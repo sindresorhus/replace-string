@@ -1,5 +1,5 @@
 import test from 'ava';
-import replaceString from '.';
+import replaceString from './index.js';
 
 test('main', t => {
 	t.is(replaceString('foo bar foo', 'bar', 'foo'), 'foo foo foo');
@@ -12,17 +12,17 @@ test('main', t => {
 
 	t.is(
 		replaceString('My friend has a 🐑. I want a 🐑 too!', '🐑', '🦄'),
-		'My friend has a 🦄. I want a 🦄 too!'
+		'My friend has a 🦄. I want a 🦄 too!',
 	);
 
 	t.is(
 		replaceString('foo bar baz foo baz', 'foo', '🦄'),
-		'🦄 bar baz 🦄 baz'
+		'🦄 bar baz 🦄 baz',
 	);
 
 	t.is(
 		replaceString('foo bar baz foo baz', 'foo', '🦄', {fromIndex: 5}),
-		'foo bar baz 🦄 baz'
+		'foo bar baz 🦄 baz',
 	);
 	t.is(replaceString('foo', 3, 3, {fromIndex: 100}), 'foo');
 	t.is(replaceString('foo', 'foo', 'bar', {fromIndex: -100}), 'bar');
@@ -45,7 +45,7 @@ test('function replacement', t => {
 			t.is(typeof input, 'string');
 			return `${matchedSubstring}2`;
 		}),
-		'foo2 bar baz foo2 baz'
+		'foo2 bar baz foo2 baz',
 	);
 
 	t.deepEqual(countIndices, [1, 2]);
@@ -65,7 +65,7 @@ test('function replacement with `fromIndex` option', t => {
 			t.is(typeof input, 'string');
 			return `${matchedSubstring}2`;
 		}, {fromIndex: 5}),
-		'foo bar baz foo2 baz Foo'
+		'foo bar baz foo2 baz Foo',
 	);
 
 	t.deepEqual(countIndices, [1]);
@@ -85,7 +85,7 @@ test('function replacement with `fromIndex` and `caseInsensitive` options', t =>
 			t.is(typeof input, 'string');
 			return `${matchedSubstring}2`;
 		}, {fromIndex: 15, caseInsensitive: true}),
-		'fOO bar baz foo baz foo2 Foo2 fOo2 FoO2'
+		'fOO bar baz foo baz foo2 Foo2 fOo2 FoO2',
 	);
 
 	t.deepEqual(countIndices, [1, 2, 3, 4]);

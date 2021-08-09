@@ -4,7 +4,7 @@
 
 Similar to `String#replace()`, but supports replacing multiple matches. You could achieve something similar by putting the string in a `RegExp` constructor with the global flag and passing it to `String#replace()`, but you would then have to first escape the string anyways.
 
-*With [Node.js 15](https://medium.com/@nodejs/node-js-v15-0-0-is-here-deb00750f278), this package is partly moot as there is now a [`String#replaceAll`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll) method. However, it does not have a `caseInsensitive` option.*
+*With [Node.js 16](https://medium.com/@nodejs/node-js-v15-0-0-is-here-deb00750f278), this package is partly moot as there is now a [`String#replaceAll`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll) method. However, it does not have a `caseInsensitive` option.*
 
 ## Install
 
@@ -15,7 +15,7 @@ $ npm install replace-string
 ## Usage
 
 ```js
-const replaceString = require('replace-string');
+import replaceString from 'replace-string';
 
 const string = 'My friend has a 🐑. I want a 🐑 too!';
 
@@ -33,23 +33,25 @@ Returns a new string with all `needle` matches replaced with `replacement`.
 
 Type: `string`
 
-String to work on.
+The string to work on.
 
 #### needle
 
 Type: `string`
 
-String to match in `input`.
+The string to match in `input`.
 
 #### replacement
 
 Type: `string | Function`
 
-Replacement for `needle` matches.
+The replacement for `needle` matches.
 
 If a function, it receives the matched substring, the match count, the original input, and the index in which the match happened (as measured from the original input):
 
 ```js
+import replaceString from 'replace-string';
+
 replaceString('Foo 🐑 Bar', '🐑', (matchedSubstring, matchCount, input, matchIndex) => `${matchedSubstring}❤️`);
 //=> 'Foo 🐑❤️ Bar'
 ```
